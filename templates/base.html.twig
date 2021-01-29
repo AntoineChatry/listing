@@ -1,0 +1,34 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Bienvenue!{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    {% block stylesheets %}{% endblock %}
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light"
+      style="height: 70px;"
+    >
+      <a class="navbar-brand" href="#">Symfony</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+      <ul class="nav navbar-nav navbar-right">
+        {% if app.user %}
+        <li><a class="nav-link" href="{{ path('list') }}">Voir la liste</a></li>
+        <li><a class="nav-link" href="{{ path('app_logout') }}">Se Déconnecter</a></li>
+        {% else %}
+        <li><a class="nav-link" href="{{ path('app_login') }}">Se Connecter</a></li>
+        <li>
+          <a class="nav-link" href="{{ path('registration') }}">S'inscrire</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% block body %}{% endblock %} {% block javascripts %}{% endblock %}
+  </body>
+</html>
